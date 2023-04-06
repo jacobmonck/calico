@@ -1,0 +1,25 @@
+{
+	"name": "Calico devcontainer",
+	"dockerComposeFile": "docker-compose.yml",
+	"service": "app",
+	"workspaceFolder": "/workspace",
+	"customizations": {
+		"vscode": {
+			"settings": { 
+				"python.defaultInterpreterPath": "/usr/local/bin/python",
+				"python.linting.enabled": true,
+				"python.linting.pylintEnabled": true,
+				"python.formatting.blackPath": "/usr/local/py-utils/bin/black",
+                "python.analysis.typeCheckingMode": "strict"
+			},
+			
+			"extensions": [
+				"ms-python.python",
+				"ms-python.vscode-pylance",
+				"njpwerner.autodocstring"
+			]
+		}
+	},
+	"forwardPorts": [5432]
+}
+
