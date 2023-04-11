@@ -12,6 +12,10 @@ loguru = "^0.6.0"
 taskipy = "^1.10.4"
 python-dotenv = "^1.0.0"
 humanize = "^4.6.0"
+ormar = "^0.12.1"
+alembic = "^1.10.3"
+asyncpg = "^0.27.0"
+psycopg2 = "^2.9.6"
 
 [tool.poetry.group.dev.dependencies]
 black = "^23.3.0"

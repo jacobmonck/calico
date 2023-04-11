@@ -5,6 +5,8 @@ from disnake.ext.commands import Bot as _Bot
 from disnake.ext.commands import Context as _Context
 from loguru import logger
 
+from src.core.database import database
+
 
 class Context(_Context[_Bot]):
     pass
@@ -17,7 +19,12 @@ class Bot(_Bot):
         self.online_since: Optional[datetime] = None
 
     async def start(self, *args: Any, reconnect: bool = True, **kwargs: Any) -> None:
+        logger.info("Connecting to database...")
+        await database.connect()
+        logger.info("Connected to database.")
+
         self.online_since = datetime.utcnow()
+
         await super().start(*args, reconnect=reconnect, **kwargs)
 
     async def on_connect(self) -> None:
