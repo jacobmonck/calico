@@ -16,6 +16,7 @@ ormar = "^0.12.1"
 alembic = "^1.10.3"
 asyncpg = "^0.27.0"
 psycopg2 = "^2.9.6"
+pyyaml = "^6.0"
 
 [tool.poetry.group.dev.dependencies]
 black = "^23.3.0"

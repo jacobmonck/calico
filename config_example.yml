@@ -1,0 +1,10 @@
+python:
+  log_level:
+
+bot:
+  prefix:
+  guild_id:
+  staff_categories:
+    - # Category IDs
+  staff_channels:
+    - # Channel IDs
