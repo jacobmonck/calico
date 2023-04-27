@@ -1,4 +1,3 @@
-from os import getenv
 from pathlib import Path
 from typing import Any, List, Optional
 
@@ -12,9 +11,11 @@ class PythonConfig(BaseModel):
 
 class BotConfig(BaseModel):
     prefix: str = "!"
-    guild_id: str
-    staff_categories: Optional[List[int]]
-    staff_channels: Optional[List[str]]
+    guild_id: int
+    ignored_categories: List[int] = []
+    ignored_channels: List[int] = []
+    staff_categories: List[int] = []
+    staff_channels: List[int] = []
 
 
 class Config(BaseModel):

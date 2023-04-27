@@ -1,3 +1,4 @@
+from asyncio import Event
 from datetime import datetime
 from typing import Any, Optional
 
@@ -17,6 +18,7 @@ class Bot(_Bot):
         super().__init__(*args, **kwargs)
 
         self.online_since: Optional[datetime] = None
+        self.sync_completed = Event()
 
     async def start(self, *args: Any, reconnect: bool = True, **kwargs: Any) -> None:
         logger.info("Connecting to database...")
