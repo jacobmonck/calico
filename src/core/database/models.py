@@ -18,7 +18,6 @@ from ormar import (
 )
 
 from src.core.database import ParentMeta, database
-from src.core.database.db import TZDateTime
 
 
 class Category(Model):

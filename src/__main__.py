@@ -18,6 +18,7 @@ def main() -> None:
     for ext in [
         "src.exts.commands",
         "src.exts.utils",
+        "src.exts.listeners",
     ]:
         bot.load_extension(ext)
 
