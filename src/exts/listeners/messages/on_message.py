@@ -42,6 +42,7 @@ class OnMessage(Cog):
             created_at=message.created_at.replace(tzinfo=None),
             deleted=False,
             author=message.author.id,
+            channel=message.channel.id,
             thread=thread_id,
         )
         logger.trace("Inserted message into the database.")
