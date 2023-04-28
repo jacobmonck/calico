@@ -1,0 +1,40 @@
+version: "2"
+
+services:
+  bot:
+    build: .
+    restart: always
+    env_file: .env
+    environment:
+      DB_URI: postgresql://postgres:postgres@postgres:5432/calico
+    depends_on:
+      - postgres
+    volumes:
+      - ./logs:/logs
+
+  postgres:
+    image: postgres:15
+    environment:
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_DB: calico
+      PGDATA: /var/lib/postgresql/data/pgdata
+    volumes:
+      - ./pg_data:/var/lib/postgresql/data
+  
+  metabase:
+    image: metabase/metabase:latest
+    restart: always
+    ports:
+      - 3000:3000
+    volumes:
+      - ./metabase_data:/metabase-data
+    environment:
+      MB_DB_TYPE: postgres
+      MB_DB_DBNAME: calico
+      MB_DB_PORT: 5432
+      MB_DB_USER: postgres
+      MB_DB_PASS: postgres
+      MB_DB_HOST: postgres
+    depends_on:
+      - postgres

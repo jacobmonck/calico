@@ -5,3 +5,5 @@ __pycache__
 config.yml
 program.prof
 logs
+pg_data
+metabase_data
