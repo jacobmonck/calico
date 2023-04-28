@@ -1,6 +1,7 @@
-./venv
+.venv
 .idea
 .env
 __pycache__
 config.yml
 program.prof
+logs
