@@ -1,5 +1,0 @@
-2023-04-28 00:48:08.550 | INFO     | src.core.bot.bot:load_extension:45 - Loaded extension src.exts.commands.
-2023-04-28 00:48:08.615 | INFO     | src.core.bot.bot:load_extension:45 - Loaded extension src.exts.utils.
-2023-04-28 00:48:08.972 | INFO     | src.core.bot.bot:load_extension:45 - Loaded extension src.exts.listeners.
-2023-04-28 00:48:08.973 | INFO     | src.core.bot.bot:start:26 - Connecting to database...
-2023-04-28 00:48:09.003 | INFO     | src.core.bot.bot:start:28 - Connected to database.
