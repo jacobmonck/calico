@@ -1,4 +1,4 @@
-import sys
+from sys import stderr
 from os import environ
 
 from disnake import Intents
@@ -9,12 +9,16 @@ from src.utils import CONFIG
 
 
 def main() -> None:
+    logger.remove()
+    level=CONFIG.python.log_level.upper()
+    logger.add(stderr, level=level)
+    logger.add("logs/file_{time}.log", level="TRACE")
+
     bot = Bot(
         command_prefix=CONFIG.bot.prefix,
         intents=Intents.all(),
     )
-    logger.remove()
-    logger.add(sys.stderr, level="TRACE")
+
     for ext in [
         "src.exts.commands",
         "src.exts.utils",

@@ -6,7 +6,7 @@ from yaml import safe_load
 
 
 class PythonConfig(BaseModel):
-    log_level: Optional[str] = "INFO"
+    log_level: str = "INFO"
 
 
 class BotConfig(BaseModel):
@@ -19,7 +19,7 @@ class BotConfig(BaseModel):
 
 
 class Config(BaseModel):
-    python: Optional[PythonConfig] = None
+    python: PythonConfig = PythonConfig()
     bot: BotConfig
 
 
