@@ -1,7 +1,8 @@
 from sys import stderr
 from os import environ
+from . import __version__
 
-from disnake import Intents
+from disnake import Game, Intents
 from loguru import logger
 
 from src.core.bot import Bot
@@ -15,6 +16,7 @@ def main() -> None:
     logger.add("logs/file_{time}.log", level="TRACE")
 
     bot = Bot(
+        activity=Game(name=f"Version {__version__}"),
         command_prefix=CONFIG.bot.prefix,
         intents=Intents.all(),
     )
