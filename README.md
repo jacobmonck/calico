@@ -1,5 +1,5 @@
 # Calico
-
+[![Build](https://img.shields.io/github/actions/workflow/status/jacobmonck/calico/docker-image.yml?style=for-the-badge)](https://github.com/JacobMonck/calico/actions/workflows/docker-image.yml)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000?style=for-the-badge&logo=black.svg)](https://github.com/psf/black)
 <img src="assets/gtao-dashboard.png">
 
