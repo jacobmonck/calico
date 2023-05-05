@@ -13,8 +13,8 @@ This project started as an internal tool for the GTA Online Discord community wh
 
 1. [Installation](#installation)
    - [Prerequisites](#prerequisites)
-   - [Using the default Docker Compose](#Using-the-default-Docker-Compose)
-
+   - [Using the default Docker Compose](#using-the-default-docker-compose)
+2. [License](#license)
 ## Installation
 
 ### Prerequisites
@@ -29,3 +29,8 @@ The default Docker Compose includes the bot, a Postgres instance, and a Metabase
 1. Create a `.env` and `.config.yml` file using the `.env.example` and `config-example.yml` as refrence.
 2. Run `docker compose up --build`
 3. Add metabase to your domain/webserver (Metabase runs on port 3000)
+
+
+## License
+
+You may use and redistribute this software as long as you follow the Elastic License 2.0 (ELv2)
