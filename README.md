@@ -26,8 +26,8 @@ This project started as an internal tool for the GTA Online Discord community wh
 
 The default Docker Compose includes the bot, a Postgres instance, and a Metabase instance exposed on port 3000.
 
-1. Create a `.env` and `.config.yml` file using the `.env.example` and `config-example.yml` as refrence.
-2. Run `docker compose up --build`
+1. Create a `.env` and `.config.yml` file using the `.env.example` and `config-example.yml` as reference.
+2. `$ docker compose up --build`
 3. Add metabase to your domain/webserver (Metabase runs on port 3000)
 
 
