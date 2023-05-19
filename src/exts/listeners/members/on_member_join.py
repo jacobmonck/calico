@@ -26,7 +26,7 @@ class OnMemberJoin(Cog):
         if member.joined_at:
             joined_at = member.joined_at.replace(tzinfo=None)
 
-        if db_user := await UserModel.objects.get_or_none(member.id):
+        if db_user := await UserModel.objects.get_or_none(id=member.id):
             await db_user.update(
                 username=member.name,
                 nickname=member.nick,

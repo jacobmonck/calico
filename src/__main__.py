@@ -1,6 +1,5 @@
-from sys import stderr
 from os import environ
-from . import __version__
+from sys import stderr
 
 from disnake import Game, Intents
 from loguru import logger
@@ -8,10 +7,12 @@ from loguru import logger
 from src.core.bot import Bot
 from src.utils import CONFIG
 
+from . import __version__
+
 
 def main() -> None:
     logger.remove()
-    level=CONFIG.python.log_level.upper()
+    level = CONFIG.python.log_level.upper() or "INFO"
     logger.add(stderr, level=level)
     logger.add("logs/file_{time}.log", level="TRACE")
 

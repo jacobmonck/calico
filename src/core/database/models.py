@@ -1,5 +1,5 @@
 from datetime import datetime
-from os import environ
+from os import getenv
 from typing import Any, List, Optional
 
 from asyncpg import create_pool
@@ -73,7 +73,9 @@ class User(Model):
 
         # We create a connection pool here because Ormar had extremly poor performance
         # when using the execute_many() method so this is a more performant solution.
-        pool = await create_pool(environ["DB_URI"])
+        pool = await create_pool(
+            getenv("DB_URI", "postgresql://postgres:postgres@localhost/calico")
+        )
         if not pool:
             logger.error("Failed to establish a connection pool with the database.")
             exit()
@@ -127,3 +129,16 @@ class Message(Model):
     author: Optional[User] = ForeignKey(User)
     channel: Optional[Channel] = ForeignKey(Channel)
     thread: Optional[Thread] = ForeignKey(Thread)
+
+
+class Reaction(Model):
+    class Meta(ParentMeta):
+        tablename = "reactions"
+
+    id: int = Integer(primary_key=True)
+    name: str = Text()
+    image_url: str = Text()
+    added_at: datetime = DateTime()
+    removed: bool = Boolean()
+    message: Optional[Message] = ForeignKey(Message, ondelete="CASCADE")
+    user: Optional[User] = ForeignKey(User)

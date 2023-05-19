@@ -1,5 +1,5 @@
 from logging.config import fileConfig
-from os import environ
+from os import getenv
 
 from sqlalchemy import engine_from_config, pool
 
@@ -12,7 +12,10 @@ fileConfig(config.config_file_name)  # type: ignore
 
 target_metadata = metadata
 
-config.set_main_option("sqlalchemy.url", environ["DB_URI"])
+config.set_main_option(
+    "sqlalchemy.url",
+    getenv("DB_URI", "postgresql://postgres:postgres@localhost/calico"),
+)
 
 
 def run_migrations_offline():

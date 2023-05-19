@@ -1,5 +1,5 @@
 from .db import ParentMeta, database, metadata
-from .models import Category, Channel, Message, Thread, User
+from .models import Category, Channel, Message, Reaction, Thread, User
 
 __all__ = (
     "database",
@@ -10,4 +10,5 @@ __all__ = (
     "Thread",
     "User",
     "Message",
+    "Reaction",
 )

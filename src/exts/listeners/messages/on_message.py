@@ -1,5 +1,6 @@
 from typing import Optional
 
+from asyncpg import ForeignKeyViolationError
 from disnake import Message
 from disnake.ext.commands import Cog
 from loguru import logger
@@ -37,12 +38,15 @@ class OnMessage(Cog):
         if message.thread:
             thread_id = message.thread.id
 
-        await MessageModel.objects.create(
-            id=message.id,
-            created_at=message.created_at.replace(tzinfo=None),
-            deleted=False,
-            author=message.author.id,
-            channel=message.channel.id,
-            thread=thread_id,
-        )
-        logger.trace("Inserted message into the database.")
+        try:
+            await MessageModel.objects.create(
+                id=message.id,
+                created_at=message.created_at.replace(tzinfo=None),
+                deleted=False,
+                author=message.author.id,
+                channel=message.channel.id,
+                thread=thread_id,
+            )
+            logger.trace("Inserted message into the database.")
+        except ForeignKeyViolationError:
+            return
