@@ -3,8 +3,10 @@ from os import getenv
 from typing import Any, List, Optional
 
 from asyncpg import create_pool
+from disnake import Member
 from loguru import logger
 from more_itertools import chunked
+from orjson import dumps
 from ormar import (
     JSON,
     BigInteger,
@@ -66,6 +68,44 @@ class User(Model):
     in_guild: bool = Boolean(default=True)
     pending: bool = Boolean()
     flags: dict = JSON()
+
+    @classmethod
+    async def upsert_member(cls, member: Member) -> None:
+        joined_at = None
+        if member.joined_at:
+            joined_at = member.joined_at.replace(tzinfo=None)
+
+        rows_affected = await cls.objects.filter(id=member.id).update(
+            username=member.name,
+            nickname=member.nick,
+            discriminator=int(member.discriminator),
+            avatar_hash=getattr(member.avatar, "key", None),
+            guild_avatar_hash=getattr(member.guild_avatar, "key", None),
+            created_at=member.created_at.replace(tzinfo=None),
+            joined_at=joined_at,
+            in_guild=True,
+            pending=member.pending,
+            flags=dumps(dict(member.flags)).decode(),
+        )
+        logger.trace("Member updated in the database.")
+
+        if rows_affected != 0:
+            return
+
+        await cls.objects.create(
+            id=member.id,
+            username=member.name,
+            nickname=member.nick,
+            discriminator=int(member.discriminator),
+            avatar_hash=getattr(member.avatar, "key", None),
+            guild_avatar_hash=getattr(member.guild_avatar, "key", None),
+            created_at=member.created_at.replace(tzinfo=None),
+            joined_at=joined_at,
+            in_guild=True,
+            pending=member.pending,
+            flags=dumps(dict(member.flags)).decode(),
+        )
+        logger.trace("Member added to the database.")
 
     @classmethod
     async def bulk_upsert(cls, users: List[List[Any]]) -> None:
