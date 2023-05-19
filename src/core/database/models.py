@@ -166,9 +166,9 @@ class Message(Model):
     id: int = BigInteger(primary_key=True)
     created_at: datetime = DateTime()
     deleted: bool = Boolean()
-    author: Optional[User] = ForeignKey(User)
-    channel: Optional[Channel] = ForeignKey(Channel)
-    thread: Optional[Thread] = ForeignKey(Thread)
+    author: Optional[User] = ForeignKey(User, ondelete="CASCADE")
+    channel: Optional[Channel] = ForeignKey(Channel, ondelete="CASCADE")
+    thread: Optional[Thread] = ForeignKey(Thread, ondelete="CASCADE")
 
 
 class Reaction(Model):
@@ -181,4 +181,4 @@ class Reaction(Model):
     added_at: datetime = DateTime()
     removed: bool = Boolean()
     message: Optional[Message] = ForeignKey(Message, ondelete="CASCADE")
-    user: Optional[User] = ForeignKey(User)
+    user: Optional[User] = ForeignKey(User, ondelete="CASCADE")
