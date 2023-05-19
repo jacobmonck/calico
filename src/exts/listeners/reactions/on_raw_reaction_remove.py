@@ -1,6 +1,3 @@
-from datetime import datetime
-
-from asyncpg import ForeignKeyViolationError
 from disnake import RawReactionActionEvent
 from disnake.ext.commands import Cog
 from loguru import logger
