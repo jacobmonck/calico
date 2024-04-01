@@ -17,8 +17,8 @@ This project started as an internal tool for the GTA Online Discord community wh
 3. [License](#license)
 
 ## Features
-- Reaction satastics
-- Message statstics
+- Reaction statistics
+- Message statistics
 - Member count statistics
 - Automaticaly synchronizes with your guild
 
